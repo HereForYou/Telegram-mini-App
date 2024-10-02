@@ -27,7 +27,6 @@ import NotFound from "./page/NotFount";
 //   last_name: "",
 // };
 // const start_param = "";
-
 function App() {
   const hasShownWarningRef = useRef(false);
   const { user, start_param } = useTelegram();
