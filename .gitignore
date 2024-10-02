@@ -16,7 +16,7 @@ dist-ssr/
 *.local
 
 # Ignore specific source files
-/src/App.tsx
+src/App
 
 # Editor directories and files
 .vscode/
