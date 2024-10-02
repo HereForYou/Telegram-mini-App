@@ -7,6 +7,6 @@ const BOT_TOKEN = '6889012779:AAGeT2TE5ThX60rEBqZZAr-XzeG6Uh0NUdY';//Deployed Bo
 // const BOT_TOKEN = '7588954052:AAE7WpCDVCq_0s3T81GkPEnuNITHacxxJdc';//Test Bot Token
 
 // const BOT_URL = 'https://t.me/SmartFox1Bot/SmartFox'             //test bot url
-const BOT_URL = 'https://t.me/BuffyDropbot/BuffyDrop?startapp'   //main bot url
+const BOT_URL = 'https://t.me/BuffyDropbot/BuffyDrop'   //main bot url
 
 export { ENDPOINT, BOT_TOKEN, BOT_URL };
