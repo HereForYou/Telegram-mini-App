@@ -20,7 +20,6 @@ import Admin from "./page/Admin";
 import { rankAvatarThemes } from "./utils/constants";
 import LandingLoader from "./component/LandingLoader";
 import NotFound from "./page/NotFount";
-
 // const user = {
 //   id: "7202566339",
 //   username: "SmartFox",
