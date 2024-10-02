@@ -41,7 +41,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
         .then((res) => {
           console.log("friends > res.data", res.data);
           setFriends(res.data.friendsInfo);
-          setNumOfInvites(res.data.friendsInfo.length > 3 ? 3 : res.data.friendsInfo.length);
+          setNumOfInvites(res.data.friendsInfo.length === 0 ? 0 : res.data.friendsInfo.length % 3 === 0 ? 3 : res.data.friendsInfo.length % 3);
           setLoading(false);
         })
         .catch((err) => {
@@ -75,7 +75,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
       </div>
       <div className='font-consolas'>
         <h1 className='text-3xl font-bold text-white'>Invite friends</h1>
-        <h1 className='text-base font-bold text-white pb-2'>Invite 3 friends to be eligible for the airdrop</h1>
+        <h1 className='text-base font-bold text-white pb-2'>Invite 3 friends to get 500,000 more $Buffy</h1>
       </div>
       <div className='w-full flex justify-center items-end'>
         <img
@@ -85,6 +85,9 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
           className='w-16'
         />
       </div>
+      {/* <div>
+        <p className={numOfInvites === 3 ? 'text-green-500' : 'text-red-400'}>You are {numOfInvites === 3 ? '' : 'not'} eligible for the airdrop</p>
+      </div> */}
       <div className='relative h-14'>
         <div className='flex w-[calc(100%+4px)] -left-0.5 bg-black h-5 transform origin-center -rotate-[0.8deg] relative top-3' />
         <div className='flex w-full h-8 justify-start'>
@@ -129,7 +132,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
       </div>
       <div className='flex justify-between items-center px-6 bg-main bg-opacity-30 text-white font-semibold rounded-lg py-2.5 font-consolas text-lg'>
         <p>{friends.length} friends</p>
-        <div onClick={() => setShowFriends((prev) => !prev)}>
+        <div className="cursor-pointer" onClick={() => setShowFriends((prev) => !prev)}>
           <ChevronDown size={24} className={`transform ${showFriends && "rotate-180"} transition-all duration-300`} />
         </div>
       </div>
