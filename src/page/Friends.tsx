@@ -82,7 +82,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
           src={`/friends/${numOfInvites === 3 ? "openBox.png" : "closeBox.png"}`}
           alt='friends_bg'
           loading='lazy'
-          className='w-16 h-fit'
+          className='w-16'
         />
       </div>
       <div className='relative h-14'>
