@@ -88,7 +88,7 @@ const Exchange: React.FC<IHomeProps> = ({ setTab, setTitle, user, isNewUser }) =
             ) : (
               <p className='xxs:text-3xl text-2xl font-semibold'>{formattedTotalPoints}</p>
             )}
-            <p className='xxs:text-xl text-lg text-[#acacac]'>$SUDAIS</p>
+            <p className='xxs:text-xl text-lg text-[#acacac]'>$BUFFY</p>
           </div>
           <div className='w-full'>
             <div className='flex flex-row w-full'>
