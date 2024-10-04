@@ -30,7 +30,6 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
   useEffect(() => {
     setInviteLink(auth?.userId);
     if (!hasShownWarningRef.current && user) {
-      //https:reques
       setLoading(true);
       axios
         .get(`${ENDPOINT}/api/user/friend/${user?.id}`, {
@@ -41,7 +40,13 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
         .then((res) => {
           console.log("friends > res.data", res.data);
           setFriends(res.data.friendsInfo);
-          setNumOfInvites(res.data.friendsInfo.length === 0 ? 0 : res.data.friendsInfo.length % 3 === 0 ? 3 : res.data.friendsInfo.length % 3);
+          setNumOfInvites(
+            res.data.friendsInfo.length === 0
+              ? 0
+              : res.data.friendsInfo.length % 3 === 0
+              ? 3
+              : res.data.friendsInfo.length % 3
+          );
           setLoading(false);
         })
         .catch((err) => {
@@ -51,7 +56,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
       hasShownWarningRef.current = true;
     }
   }, []);
-  //clipBoard
+
   function legacyCopy(value: string) {
     const ta = document.createElement("textarea");
     ta.value = value ?? "";
@@ -75,7 +80,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
       </div>
       <div className='font-consolas'>
         <h1 className='text-3xl font-bold text-white'>Invite friends</h1>
-        <h1 className='text-base font-bold text-white pb-2'>Invite 3 friends to get 500,000 more $Buffy</h1>
+        <h1 className='text-base font-bold text-white pb-2'>Invite 3 friends to get 500,000 $Buffy</h1>
       </div>
       <div className='w-full flex justify-center items-end'>
         <img
@@ -123,8 +128,10 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
       <div className='flex gap-2 items-center bg-main bg-opacity-30 p-2'>
         <img src='/friends/lampHint.png' alt='lampHint' loading='lazy' className='w-6' />
         <div className='flex flex-col gap-0.5 w-full text-xs font-consolas'>
-          <p className='text-justify w-full'>The more friends you invite, the more rewards you earn.</p>
-          <p className='text-justify w-full'>You&apos;ll receive %1-2 of each friends&apos;s tokens as a bonus.</p>
+          <p className='text-justify w-full'>
+            The more friends you invite, the more rewards you earn. You&apos;ll receive %1-2 of each friends&apos;s
+            tokens as a bonus.
+          </p>
         </div>
       </div>
       <div className='flex w-full pt-5'>
@@ -132,7 +139,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
       </div>
       <div className='flex justify-between items-center px-6 bg-main bg-opacity-30 text-white font-semibold rounded-lg py-2.5 font-consolas text-lg'>
         <p>{friends.length} friends</p>
-        <div className="cursor-pointer" onClick={() => setShowFriends((prev) => !prev)}>
+        <div className='cursor-pointer' onClick={() => setShowFriends((prev) => !prev)}>
           <ChevronDown size={24} className={`transform ${showFriends && "rotate-180"} transition-all duration-300`} />
         </div>
       </div>
