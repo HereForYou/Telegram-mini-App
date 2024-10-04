@@ -21,7 +21,7 @@ const InviteFriendModal = ({
         You have <span className='text-yellow-400 font-bold'>Unlimited</span> invitations available
       </h4>
       <a
-        href={`${BOT_URL}?startapp=${inviteLink}&text=${desText}`}
+        href={`https://t.me/share/url?url=${BOT_URL}?startapp=${inviteLink}&text=${desText}`}
         target='blank'
         className='bg-[#110d33] p-1 rounded-xl text-white font-semibold transition relative duration-200 hover:translate-y-[2px]'>
         <div className=' cursor-pointer py-2 hover:text-[#4b37dd] rounded-xl'>
