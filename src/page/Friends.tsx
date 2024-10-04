@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Loader from "../component/Loader";
+import Confetti from "react-confetti";
 import { toast } from "react-hot-toast";
 // import { faClone, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,6 +24,8 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
   const [limiteModal, setLimiteModal] = useState<boolean>(false);
   const [numOfInvites, setNumOfInvites] = useState(0);
   const [showFriends, setShowFriends] = useState(false);
+  const [isConfetti, setIsConfetti] = useState(false);
+  const [openBox, setOpenBox] = useState(false);
   const auth = useTimeContext();
   // console.log("This is telegram userId > ", auth?.userId);
 
@@ -57,6 +60,19 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
     }
   }, []);
 
+  useEffect(() => {
+    if (numOfInvites == 3) {
+      setIsConfetti(true);
+      toast.success("Nice work! 200,000 Buffy tokens claimed. Keep it up!");
+      setTimeout(() => {
+        setOpenBox(true);
+      }, 800);
+    } else {
+      setIsConfetti(false);
+      setOpenBox(false);
+    }
+  }, [numOfInvites]);
+
   function legacyCopy(value: string) {
     const ta = document.createElement("textarea");
     ta.value = value ?? "";
@@ -80,14 +96,14 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
       </div>
       <div className='font-consolas'>
         <h1 className='text-3xl font-bold text-white'>Invite friends</h1>
-        <h1 className='text-base font-bold text-white pb-2'>Invite 3 friends to get 500,000 $Buffy</h1>
+        <h1 className='text-base font-bold text-white pb-2'>Invite 3 friends to get 200,000 $Buffy</h1>
       </div>
       <div className='w-full flex justify-center items-end'>
         <img
-          src={`/friends/${numOfInvites === 3 ? "openBox.png" : "closeBox.png"}`}
+          src={`/friends/${numOfInvites === 3 && openBox ? "openBox.png" : "closeBox.png"}`}
           alt='friends_bg'
           loading='lazy'
-          className='w-16'
+          className={`w-16 transition-all ${isConfetti && !openBox ? "vibrate" : ""}`}
         />
       </div>
       {/* <div>
@@ -125,7 +141,9 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
           }`}
         />
       </div>
-      <div className='flex gap-2 items-center bg-main bg-opacity-30 p-2'>
+      <div
+        className='flex gap-2 items-center bg-main bg-opacity-30 p-2'
+        onClick={() => setNumOfInvites((prev) => ((prev + 1) % 3 === 0 ? 3 : (prev + 1) % 3))}>
         <img src='/friends/lampHint.png' alt='lampHint' loading='lazy' className='w-6' />
         <div className='flex flex-col gap-0.5 w-full text-xs font-consolas'>
           <p className='text-justify w-full'>
@@ -177,6 +195,15 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
         desText={desText}
       />
       <LimiteModal limitModal={limiteModal} handleClose={() => setLimiteModal(false)} />
+      <div id='confetti' />
+      {isConfetti && (
+        <Confetti
+          recycle={false}
+          className={`${isConfetti ? "opacity-100" : "opacity-0"}`}
+          tweenDuration={5000}
+          numberOfPieces={800}
+        />
+      )}
     </div>
   );
 };
