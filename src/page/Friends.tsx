@@ -142,8 +142,7 @@ const Friends = ({ user, inviteRevenue, modal }: { user: any; inviteRevenue: num
         />
       </div>
       <div
-        className='flex gap-2 items-center bg-main bg-opacity-30 p-2'
-        onClick={() => setNumOfInvites((prev) => ((prev + 1) % 3 === 0 ? 3 : (prev + 1) % 3))}>
+        className='flex gap-2 items-center bg-main bg-opacity-30 p-2'>
         <img src='/friends/lampHint.png' alt='lampHint' loading='lazy' className='w-6' />
         <div className='flex flex-col gap-0.5 w-full text-xs font-consolas'>
           <p className='text-justify w-full'>
